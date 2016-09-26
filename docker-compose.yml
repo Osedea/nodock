@@ -1,0 +1,12 @@
+version: '2'
+
+services:
+    node:
+        build:
+            context: ./node
+    mysql:
+        build:
+            context: ./mysql
+    nginx:
+        build:
+            context: ./nginx
