@@ -6,29 +6,19 @@ services:
         build:
             context: ./node
         volumes_from:
-            - volumes_source
+            - volumes
         extra_hosts:
             - "dockerhost:10.0.75.1"
-        depends_on:
-            - volumes_source
-        command: bash -c 'export NVM_DIR="/root/.nvm"; [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"; node -e "console.log(11111);"'
-
-    workspace:
-      build:
-          context: ./workspace
-      volumes_from:
-          - volumes_source
-      extra_hosts:
-          - "dockerhost:10.0.75.1"
-      ports:
-         - "22:22"
-      tty: true
+        environment:
+            - NODE_VERSION=latest
+        entrypoint: node /opt/app/index.js
+        tty: true
 
     mysql:
         build:
             context: ./mysql
         volumes_from:
-            - volumes_source
+            - volumes
         expose:
             - "3306"
         environment:
@@ -41,7 +31,7 @@ services:
         build:
             context: ./nginx
         volumes_from:
-            - volumes_source
+            - volumes
         volumes:
             - ./logs/nginx/:/var/log/nginx
         ports:
@@ -53,7 +43,7 @@ services:
             - "dockerhost:10.0.75.1"
         tty: true
 
-    volumes_source:
+    volumes:
         image: tianon/true
         volumes:
             - ../:/opt/app
