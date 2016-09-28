@@ -1,16 +1,30 @@
-# nodock
+# NoDock
 Docker-Compose for Node projects with MySQL and NGINX images
 
 **WARNING: THIS PROJECT IS STILL IN EARLY DEVELOPMENT, DO NOT USE IN PRODUCTION**
 
 ## Usage
 
+#### Install in your project
+
+As a submodule:
+```
+git submodule add https://github.com/Osedea/nodock.git
+```
+
 #### Build and Run the containers
 ```
+cd nodock
 docker-compose up -d
 ```
 
 ## Customization
+
+To customize the NoDock installation, either add a `docker-compose.override.yml` in the NoDock directory or store environment specific configurations.
+
+```
+docker-compose -f nodock/docker-compose.yml -f docker-compose.dev.yml up -d
+```
 
 #### Change the node entrypoint
 
@@ -22,7 +36,7 @@ version: '2'
 
 services:
     node:
-        entrypoint: bash -c "cd /opt/app/ && npm install && node main.js"
+        entrypoint: run-nodock "node main.js"
 ```
 
 #### Change the MySQL environments variables
