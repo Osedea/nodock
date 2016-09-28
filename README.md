@@ -72,3 +72,17 @@ services:
             args:
                 reverse_proxy_port: "8080"
 ```
+
+#### Change the NODE_ENV variable
+
+The default `NODE_ENV` value is `production`, you can change it to development by doing the following 
+```
+# docker-compose.override.yml
+
+version: '2'
+
+services:
+    node:
+        environment:
+            NODE_ENV: development
+```

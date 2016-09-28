@@ -10,6 +10,8 @@ services:
         extra_hosts:
             - "dockerhost:10.0.75.1"
         entrypoint: run-nodock "node index.js"
+        environment:
+            NODE_ENV: production
         tty: true
 
     mysql:
