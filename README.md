@@ -57,3 +57,18 @@ services:
             MYSQL_PASSWORD: custom_password
             MYSQL_ROOT_PASSWORD: custom_root_password
 ```
+
+#### Change the NGINX reverse proxy port
+
+Use port `8080` instead of `8000` to bind your Node server
+```
+# docker-compose.override.yml
+
+version: '2'
+
+services:
+    nginx:
+        build:
+            args:
+                reverse_proxy_port: "8080"
+```
