@@ -1,7 +1,11 @@
 # NoDock
-Docker-Compose for Node projects with MySQL and NGINX images
+Docker Compose for Node projects with MySQL and NGINX images
 
 **WARNING: THIS PROJECT IS STILL IN EARLY DEVELOPMENT, DO NOT USE IN PRODUCTION**
+
+## Requirements
+* [Docker Engine 1.12+](https://docs.docker.com/engine/installation/)
+* [Docker Compose 1.8+](https://docs.docker.com/compose/install/)
 
 ## Usage
 
