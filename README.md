@@ -22,7 +22,7 @@ version: '2'
 
 services:
     node:
-        entrypoint: bash -c "cd /opt/app/ && npm install && node main.js"
+        entrypoint: run-nodock "node main.js"
 ```
 
 #### Change the MySQL environments variables
