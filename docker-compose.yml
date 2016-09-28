@@ -9,9 +9,7 @@ services:
             - volumes
         extra_hosts:
             - "dockerhost:10.0.75.1"
-        environment:
-            - NODE_VERSION=latest
-        entrypoint: node /opt/app/index.js
+        entrypoint: bash -c "cd /opt/app/ && npm install && node index.js"
         tty: true
 
     mysql:
@@ -21,6 +19,8 @@ services:
             - volumes
         expose:
             - "3306"
+        extra_hosts:
+            - "dockerhost:10.0.75.1"
         environment:
             MYSQL_DATABASE: default_database
             MYSQL_USER: default_user

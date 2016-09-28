@@ -5,14 +5,16 @@ Docker-Compose for Node projects with MySQL and NGINX images
 
 ## Usage
 
-#### Build the containers
+#### Build and Run the containers
 ```
 docker-compose up -d
 ```
 
 ## Customization
 
-### Change the node entrypoint
+#### Change the node entrypoint
+
+Use `main.js` instead of `index.js`
 ```
 # docker-compose.override.yml
 
@@ -20,10 +22,10 @@ version: '2'
 
 services:
     node:
-        entrypoint: node main.js
+        entrypoint: bash -c "cd /opt/app/ && npm install && node main.js"
 ```
 
-### Change the MySQL environments variables
+#### Change the MySQL environments variables
 ```
 # docker-compose.override.yml
 
