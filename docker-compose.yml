@@ -9,7 +9,7 @@ services:
             - volumes
         extra_hosts:
             - "dockerhost:10.0.75.1"
-        entrypoint: bash -c "cd /opt/app/ && npm install && node index.js"
+        entrypoint: run-nodock "node index.js"
         tty: true
 
     mysql:
@@ -32,8 +32,6 @@ services:
             context: ./nginx
         volumes_from:
             - volumes
-        volumes:
-            - ./logs/nginx/:/var/log/nginx
         ports:
             - "80:80"
             - "443:443"
@@ -47,3 +45,4 @@ services:
         image: tianon/true
         volumes:
             - ../:/opt/app
+            - ./data/logs/nginx/:/var/log/nginx
