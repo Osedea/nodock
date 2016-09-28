@@ -30,6 +30,8 @@ services:
     nginx:
         build:
             context: ./nginx
+            args:
+                reverse_proxy_port: "8000"
         volumes_from:
             - volumes
         ports:

@@ -1,0 +1,11 @@
+# environment variables
+# REVERSE_PROXY_PORT ${REVERSE_PROXY_PORT}
+
+server {
+    listen 80 default_server;
+    listen 443 default_server;
+
+    location / {
+        proxy_pass http://node:${REVERSE_PROXY_PORT};
+    }
+}
