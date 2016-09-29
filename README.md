@@ -22,6 +22,37 @@ cd nodock
 docker-compose up -d
 ```
 
+## Running multiple node containers
+To add more node containers, simply add the following to your `docker-compose.override.yml` or environment specific docker-compose file.
+```
+# docker-compose.override.yml
+
+version: '2'
+
+services:
+    node2: # name of new container
+        extends: node # extends the settings from the "node" container
+        entrypoint: run-nodock "node alternate.js" # the entrypoint for the "node2" container
+    nginx:
+        ports:
+            - "10000:10000" # the port(s) to forward for the "node2" container
+        links:
+            - node2 # link "nginx" to "node2"
+```
+
+You'll also need to add a server block for "node2".
+```
+# nginx/sites/node2.conf
+
+server {
+    listen 10000 default_server;
+
+    location / {
+        proxy_pass http://node2:8000;
+    }
+}
+```
+
 ## Customization
 
 To customize the NoDock installation, either add a `docker-compose.override.yml` in the NoDock directory or store environment specific configurations.
@@ -70,7 +101,7 @@ services:
     nginx:
         build:
             args:
-                reverse_proxy_port: "8080"
+                web_reverse_proxy_port: "8080"
 ```
 
 #### Change the NODE_ENV variable

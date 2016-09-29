@@ -7,8 +7,8 @@ services:
             context: ./node
             args:
                 node_version: latest
-        volumes_from:
-            - volumes
+        volumes:
+            - ../:/opt/app
         extra_hosts:
             - "dockerhost:10.0.75.1"
         entrypoint: run-nodock "node index.js"
@@ -35,12 +35,11 @@ services:
         build:
             context: ./nginx
             args:
-                reverse_proxy_port: "8000"
+                web_reverse_proxy_port: "8000"
         volumes_from:
             - volumes
         ports:
             - "80:80"
-            - "443:443"
         links:
             - node
         extra_hosts:
@@ -50,5 +49,4 @@ services:
     volumes:
         image: tianon/true
         volumes:
-            - ../:/opt/app
             - ./data/logs/nginx/:/var/log/nginx
