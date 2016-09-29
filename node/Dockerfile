@@ -11,11 +11,7 @@ RUN groupadd -r www-app &&\
     useradd -r -g www-app www-app
 
 # Install the specified node_version or grab latest
-RUN if [ -n "$node_version" ]; then\
-        n "$node_version"\
-    else\
-        n latest\
-    ;fi;
+RUN n "$node_version"
 
 COPY run-nodock.sh /usr/bin/run-nodock
 
