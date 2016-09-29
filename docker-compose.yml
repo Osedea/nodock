@@ -5,6 +5,8 @@ services:
     node:
         build:
             context: ./node
+            args:
+                node_version: latest
         volumes_from:
             - volumes
         extra_hosts:

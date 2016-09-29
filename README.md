@@ -75,7 +75,7 @@ services:
 
 #### Change the NODE_ENV variable
 
-The default `NODE_ENV` value is `production`, you can change it to development by doing the following 
+The default `NODE_ENV` value is `production`, you can change it to development by doing the following
 ```
 # docker-compose.override.yml
 
@@ -85,4 +85,19 @@ services:
     node:
         environment:
             NODE_ENV: development
+```
+
+#### Use a specific Node version
+
+The default node version is `latest`, this is **NOT** advisable for production
+```
+# docker-compose.override.yml
+
+version: '2'
+
+services:
+    node:
+        build:
+            args:
+                node_version: 4.6.0
 ```
