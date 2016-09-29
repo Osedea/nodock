@@ -1,0 +1,13 @@
+# environment variables
+# WEB_REVERSE_PROXY_PORT ${WEB_REVERSE_PROXY_PORT}
+server {
+    listen 443 default_server http2;
+
+    ssl on;
+    ssl_certificate /etc/ssl/cacert.pem;
+    ssl_certificate_key /etc/ssl/privkey.pem;
+
+    location / {
+        proxy_pass http://node:${WEB_REVERSE_PROXY_PORT};
+    }
+}

@@ -22,6 +22,28 @@ cd nodock
 docker-compose up -d
 ```
 
+## Allow HTTPS
+
+By default HTTPS is disabled. To enable it, you may use the following settings
+
+```
+# docker-compose.override.yml
+
+version: '2'
+
+services:
+    nginx:
+        build:
+            args:
+                web_ssl: "true" # defaults to "false"
+                self_signed: "true" # defaults to "false"
+```
+
+`self_signed: "true"` will generate the necessary files, do note that `self_signed: "true"` as no effect if `web_ssl: "false"`
+
+If you want to use your own: leave `self_signed: "false"`, add the certificate to `nginx/certs/cacert.pem` and the private key to `nginx/certs/privkey.pem`.
+
+
 ## Running multiple node containers
 To add more node containers, simply add the following to your `docker-compose.override.yml` or environment specific docker-compose file.
 ```
