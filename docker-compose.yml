@@ -36,10 +36,13 @@ services:
             context: ./nginx
             args:
                 web_reverse_proxy_port: "8000"
+                web_ssl: "false"
+                self_signed: "false"
         volumes_from:
             - volumes
         ports:
             - "80:80"
+            - "443:443"
         links:
             - node
         extra_hosts:
