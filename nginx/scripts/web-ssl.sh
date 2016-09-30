@@ -13,7 +13,13 @@ else
             -subj "/C=FK/ST=Fake/L=Fake/O=Fake/CN=0.0.0.0" \
             -keyout /etc/ssl/privkey.pem \
             -out /etc/ssl/cacert.pem
-        chown www-data:www-data /etc/ssl/cacert.pem
-        chown www-data:www-data /etc/ssl/privkey.pem
+        chown www-data:www-data /etc/ssl/cert1.pem
+        chown www-data:www-data /etc/ssl/privkey1.pem
+    fi
+    if [ -e /var/certs/cert1.pem ]; then
+        cp /var/certs/cert1.pem /etc/ssl/cert1.pem
+    fi
+    if [ -e /var/certs/privkey1.pem ]; then
+        cp /var/certs/privkey1.pem /etc/ssl/privkey1.pem
     fi
 fi

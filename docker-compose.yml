@@ -30,6 +30,7 @@ services:
             MYSQL_USER: default_user
             MYSQL_PASSWORD: secret
             MYSQL_ROOT_PASSWORD: root
+        tty: true
 
     nginx:
         build:
@@ -49,7 +50,17 @@ services:
             - "dockerhost:10.0.75.1"
         tty: true
 
+    certbot:
+        build:
+            context: ./certbot
+        links:
+            - nginx
+        volumes_from:
+            - volumes
+
     volumes:
         image: tianon/true
         volumes:
+            - ./certbot/letsencrypt/:/var/www/letsencrypt
+            - ./certbot/certs/:/var/certs
             - ./data/logs/nginx/:/var/log/nginx

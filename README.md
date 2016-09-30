@@ -19,6 +19,10 @@ git submodule add https://github.com/Osedea/nodock.git
 #### Build and Run the containers
 ```
 cd nodock
+# Simple app
+docker-compose up -d node mysql nginx
+# or
+# All containers
 docker-compose up -d
 ```
 
@@ -35,17 +39,50 @@ services:
     nginx:
         build:
             args:
-                web_ssl: "true" # defaults to "false"
-                self_signed: "true" # defaults to "false"
+                web_ssl: "true"
 ```
+Add your certificate to `nginx/certs/cacert.pem` and the private key to `nginx/certs/privkey.pem`.
+
+#### Generate and use a self-signed cert
 
 `self_signed: "true"` will generate the necessary files, do note that `self_signed: "true"` as no effect if `web_ssl: "false"`
 
-If you want to use your own: leave `self_signed: "false"`, add the certificate to `nginx/certs/cacert.pem` and the private key to `nginx/certs/privkey.pem`.
+```
+# docker-compose.override.yml
 
+version: '2'
+
+services:
+    nginx:
+        build:
+            args:
+                web_ssl: "true"
+                self_signed: "true"
+```
+
+#### Generate and use certbot (Let's Encrypt) to generate the cert
+
+`CN` must be a publicly accessible address and `EMAIL` should be the server admin contact email.
+
+```
+version: '2'
+
+services:
+    nginx:
+        build:
+            args:
+                web_ssl: "true"
+    certbot:
+        environment:
+            CN: "example.com"
+            EMAIL: "fake@gmail.com"
+```
+Don't forget to bring up the container if you plan on using certbot (`docker-compose up -d certbot`).
 
 ## Running multiple node containers
+
 To add more node containers, simply add the following to your `docker-compose.override.yml` or environment specific docker-compose file.
+
 ```
 # docker-compose.override.yml
 
