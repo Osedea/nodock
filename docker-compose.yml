@@ -19,18 +19,16 @@ services:
     mysql:
         build:
             context: ./mysql
+            args:
+                mysql_database: default_database
+                mysql_user: default_user
+                mysql_password: secret
         volumes_from:
             - volumes
         expose:
             - "3306"
         extra_hosts:
             - "dockerhost:10.0.75.1"
-        environment:
-            MYSQL_DATABASE: default_database
-            MYSQL_USER: default_user
-            MYSQL_PASSWORD: secret
-            MYSQL_ROOT_PASSWORD: root
-        tty: true
 
     nginx:
         build:
@@ -63,4 +61,5 @@ services:
         volumes:
             - ./certbot/letsencrypt/:/var/www/letsencrypt
             - ./certbot/certs/:/var/certs
+            - ./data/mysql:/var/lib/mysql
             - ./data/logs/nginx/:/var/log/nginx
