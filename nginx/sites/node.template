@@ -6,4 +6,9 @@ server {
     location / {
         proxy_pass http://node:${WEB_REVERSE_PROXY_PORT};
     }
+
+    location /.well-known/acme-challenge/ {
+        root /var/www/letsencrypt/;
+        log_not_found off;
+    }
 }
