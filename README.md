@@ -60,7 +60,7 @@ services:
                 self_signed: "true"
 ```
 
-#### Generate and use certbot (Let's Encrypt) to generate the cert
+#### Use certbot (Let's Encrypt) to generate the cert
 
 `CN` must be a publicly accessible address and `EMAIL` should be the server admin contact email.
 
