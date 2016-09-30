@@ -133,7 +133,7 @@ services:
         entrypoint: run-nodock "node main.js"
 ```
 
-#### Change the MySQL environments variables
+#### Change the MySQL database/user/password
 ```
 # docker-compose.override.yml
 
@@ -141,11 +141,11 @@ version: '2'
 
 services:
     mysql:
-        environment:
-            MYSQL_DATABASE: custom_database
-            MYSQL_USER: custom_user
-            MYSQL_PASSWORD: custom_password
-            MYSQL_ROOT_PASSWORD: custom_root_password
+        build:
+            args:
+                mysql_database: default_database
+                mysql_user: default_user
+                mysql_password: secret
 ```
 
 #### Change the NGINX reverse proxy port
