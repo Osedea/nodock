@@ -79,6 +79,40 @@ services:
 ```
 Don't forget to bring up the container if you plan on using certbot (`docker-compose up -d certbot`).
 
+## Running a single non-web container
+
+The default NGINX server block configuration is aimed at web projects but if you want to have a single non-web container you can do something similar to the following configuration.
+
+```
+# docker-compose.override.yml
+
+version: '2'
+
+services:
+    nginx:
+        build:
+            args:
+                no_default: "true"
+        ports:
+            - "10000:10000"
+```
+
+Do note that using `no_default` makes `web_reverse_proxy_port`, `web_ssl` and `self_signed` have no effect.
+
+You will then have to provide your own NGINX server block like so
+
+```
+# nginx/sites/custom-node.conf
+
+server {
+    listen 10000 default_server;
+
+    location / {
+        proxy_pass http://node:5000;
+    }
+}
+```
+
 ## Running multiple node containers
 
 To add more node containers, simply add the following to your `docker-compose.override.yml` or environment specific docker-compose file.

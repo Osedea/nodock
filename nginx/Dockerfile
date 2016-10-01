@@ -6,21 +6,18 @@ ADD nginx.conf /etc/nginx/
 COPY scripts /root/scripts/
 COPY certs/* /etc/ssl/
 
-COPY sites/*.template /etc/nginx/templates/
-COPY sites/*.conf /etc/nginx/sites-available/
+COPY sites /etc/nginx/templates
 
 ARG web_reverse_proxy_port
 ARG web_ssl
 ARG self_signed
+ARG no_default
 
 ENV WEB_REVERSE_PROXY_PORT=$web_reverse_proxy_port
 ENV WEB_SSL=$web_ssl
 ENV SELF_SIGNED=$self_signed
+ENV NO_DEFAULT=$no_default
 
-RUN for template in /etc/nginx/templates/*.template; do\
-        envsubst < $template > "/etc/nginx/sites-available/"$(basename $template)".conf"\
-    ;done;
-
-RUN /bin/bash /root/scripts/web-ssl.sh
+RUN /bin/bash /root/scripts/build-nginx.sh
 
 CMD nginx

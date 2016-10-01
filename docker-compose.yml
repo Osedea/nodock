@@ -37,13 +37,12 @@ services:
                 web_reverse_proxy_port: "8000"
                 web_ssl: "false"
                 self_signed: "false"
+                no_default: "false"
         volumes_from:
             - volumes
         ports:
             - "80:80"
             - "443:443"
-        links:
-            - node
         extra_hosts:
             - "dockerhost:10.0.75.1"
         tty: true
