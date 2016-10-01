@@ -3,20 +3,44 @@ Docker Compose for Node projects with Node, MySQL, NGINX and Certbot images
 
 **WARNING: THIS PROJECT IS STILL IN EARLY DEVELOPMENT, DO NOT USE IN PRODUCTION**
 
+## Contents
+
+- [Requirements](#Requirements)
+- [Installation](#Installation)
+- [Usage](#Usage)
+- [HTTPS](#HTTPS)
+    - [Self-signed certificates](#SelfSigned)
+    - [Certbot](#Certbot)
+- [Non-web project](#Non-Web)
+- [Multiple Node containers](#Multi-Node)
+- [More options](#More-Options)
+    - [Change Node entrypoint](#Node-Entrypoint)
+    - [Change Node environment](#Node-Environment)
+    - [Change Node version](#Node-Version)
+    - [Change MySQL database/user/password](#MySQL-Database-User)
+    - [Change NGINX reverse proxy port](#NGINX-Reverse-Proxy-Port)
+- [Contributing](#Contributing)
+- [License](#License)
+
+<a name="Requirements"></a>
 ## Requirements
+
 * [Docker Engine 1.12+](https://docs.docker.com/engine/installation/)
 * [Docker Compose 1.8+](https://docs.docker.com/compose/install/)
 
-## Usage
-
-#### Install in your project
-
-As a submodule:
+<a name="Installation"></a>
+## Installation
+As a git submodule:
 ```
 git submodule add https://github.com/Osedea/nodock.git
 ```
 
-#### Build and Run the containers
+Clone into your project:
+```
+git clone https://github.com/Osedea/nodock.git
+```
+<a name="Usage"></a>
+## Usage
 ```
 cd nodock
 # Simple app
@@ -25,9 +49,8 @@ docker-compose up -d node mysql nginx
 # All containers
 docker-compose up -d
 ```
-
-## Allow HTTPS
-
+<a name="HTTPS"></a>
+## Using HTTPS
 By default HTTPS is disabled. To enable it, you may use the following settings
 
 ```
@@ -42,9 +65,8 @@ services:
                 web_ssl: "true"
 ```
 Add your certificate to `nginx/certs/cacert.pem` and the private key to `nginx/certs/privkey.pem`.
-
+<a name="SelfSigned"></a>
 #### Generate and use a self-signed cert
-
 `self_signed: "true"` will generate the necessary files, do note that `self_signed: "true"` as no effect if `web_ssl: "false"`
 
 ```
@@ -59,9 +81,8 @@ services:
                 web_ssl: "true"
                 self_signed: "true"
 ```
-
-#### Use certbot (Let's Encrypt) to generate the cert
-
+<a name="Certbot"></a>
+#### Use Certbot (Let's Encrypt) to generate the cert
 `CN` must be a publicly accessible address and `EMAIL` should be the server admin contact email.
 
 ```
@@ -78,9 +99,8 @@ services:
             EMAIL: "fake@gmail.com"
 ```
 Don't forget to bring up the container if you plan on using certbot (`docker-compose up -d certbot`).
-
+<a name="Non-Web"></a>
 ## Running a single non-web container
-
 The default NGINX server block configuration is aimed at web projects but if you want to have a single non-web container you can do something similar to the following configuration.
 
 ```
@@ -112,9 +132,8 @@ server {
     }
 }
 ```
-
+<a name="Multi-Node"></a>
 ## Running multiple node containers
-
 To add more node containers, simply add the following to your `docker-compose.override.yml` or environment specific docker-compose file.
 
 ```
@@ -145,17 +164,15 @@ server {
     }
 }
 ```
-
-## Customization
-
+<a name="More-Options"></a>
+## More Options
 To customize the NoDock installation, either add a `docker-compose.override.yml` in the NoDock directory or store environment specific configurations.
 
 ```
 docker-compose -f nodock/docker-compose.yml -f docker-compose.dev.yml up -d
 ```
-
+<a name="Node-Entrypoint"></a>
 #### Change the node entrypoint
-
 Use `main.js` instead of `index.js`
 ```
 # docker-compose.override.yml
@@ -166,7 +183,34 @@ services:
     node:
         entrypoint: run-nodock "node main.js"
 ```
+<a name="Node-Environment"></a>
+#### Change the Node Environment
+The default `NODE_ENV` value is `production`, you can change it to development by doing the following
+```
+# docker-compose.override.yml
 
+version: '2'
+
+services:
+    node:
+        environment:
+            NODE_ENV: development
+```
+<a name="Node-Version"></a>
+#### Use a specific Node version
+The default node version is `latest`, this is **NOT** advisable for production
+```
+# docker-compose.override.yml
+
+version: '2'
+
+services:
+    node:
+        build:
+            args:
+                node_version: 4.6.0
+```
+<a name="MySQL-Database-User"></a>
 #### Change the MySQL database/user/password
 ```
 # docker-compose.override.yml
@@ -181,9 +225,8 @@ services:
                 mysql_user: default_user
                 mysql_password: secret
 ```
-
+<a name="NGINX-Reverse-Proxy-Port"></a>
 #### Change the NGINX reverse proxy port
-
 Use port `8080` instead of `8000` to bind your Node server
 ```
 # docker-compose.override.yml
@@ -196,32 +239,13 @@ services:
             args:
                 web_reverse_proxy_port: "8080"
 ```
+<a name="Contributing"></a>
+## Contributing
+Do not hesitate to contribute to NoDock by creating an issue, fixing a bug or bringing a new idea to the table.
 
-#### Change the NODE_ENV variable
+To fix a bug or introduce a new feature, please create a PR, we will merge it in to the `master` branch after review.
 
-The default `NODE_ENV` value is `production`, you can change it to development by doing the following
-```
-# docker-compose.override.yml
-
-version: '2'
-
-services:
-    node:
-        environment:
-            NODE_ENV: development
-```
-
-#### Use a specific Node version
-
-The default node version is `latest`, this is **NOT** advisable for production
-```
-# docker-compose.override.yml
-
-version: '2'
-
-services:
-    node:
-        build:
-            args:
-                node_version: 4.6.0
-```
+We thank you in advance for contributing.
+<a name="License"></a>
+## License
+[MIT License](https://github.com/laradock/laradock/blob/master/LICENSE) (MIT)
