@@ -5,6 +5,9 @@ RUN apt-get update &&\
     npm install -g n
 
 ARG node_version
+ARG project_path
+
+ENV PROJECT_PATH=$project_path
 
 # Add
 RUN groupadd -r www-app &&\
@@ -13,8 +16,8 @@ RUN groupadd -r www-app &&\
 # Install the specified node_version or grab latest
 RUN n "$node_version"
 
-COPY run-nodock.sh /usr/bin/run-nodock
+COPY scripts/run-nodock.sh /usr/bin/run-nodock
 
 RUN chmod 700 /usr/bin/run-nodock
 
-WORKDIR /opt/app/
+WORKDIR /opt/app

@@ -17,6 +17,7 @@ Docker Compose for Node projects with Node, MySQL, NGINX and Certbot images
     - [Change Node entrypoint](#Node-Entrypoint)
     - [Change Node environment](#Node-Environment)
     - [Change Node version](#Node-Version)
+    - [Change Node project location](#Node-Project-Path)
     - [Change MySQL database/user/password](#MySQL-Database-User)
     - [Change NGINX reverse proxy port](#NGINX-Reverse-Proxy-Port)
 - [Contributing](#Contributing)
@@ -49,9 +50,8 @@ docker-compose up -d node mysql nginx
 # All containers
 docker-compose up -d
 ```
-<a name="HTTPS"></a>
-## Using HTTPS
-By default HTTPS is disabled. To enable it, you may use the following settings
+
+To overwrite the `docker-compose.yml` file you can use a `docker-compose.override.yml`
 
 ```
 # docker-compose.override.yml
@@ -59,6 +59,16 @@ By default HTTPS is disabled. To enable it, you may use the following settings
 version: '2'
 
 services:
+    [...]
+```
+
+<a name="HTTPS"></a>
+## Using HTTPS
+By default HTTPS is disabled. To enable it, you may use the following settings
+
+```
+# docker-compose.override.yml
+[...]
     nginx:
         build:
             args:
@@ -71,10 +81,7 @@ Add your certificate to `nginx/certs/cacert.pem` and the private key to `nginx/c
 
 ```
 # docker-compose.override.yml
-
-version: '2'
-
-services:
+[...]
     nginx:
         build:
             args:
@@ -86,9 +93,8 @@ services:
 `CN` must be a publicly accessible address and `EMAIL` should be the server admin contact email.
 
 ```
-version: '2'
-
-services:
+# docker-compose.override.yml
+[...]
     nginx:
         build:
             args:
@@ -105,10 +111,7 @@ The default NGINX server block configuration is aimed at web projects but if you
 
 ```
 # docker-compose.override.yml
-
-version: '2'
-
-services:
+[...]
     nginx:
         build:
             args:
@@ -138,10 +141,7 @@ To add more node containers, simply add the following to your `docker-compose.ov
 
 ```
 # docker-compose.override.yml
-
-version: '2'
-
-services:
+[...]
     node2: # name of new container
         extends: node # extends the settings from the "node" container
         entrypoint: run-nodock "node alternate.js" # the entrypoint for the "node2" container
@@ -176,10 +176,7 @@ docker-compose -f nodock/docker-compose.yml -f docker-compose.dev.yml up -d
 Use `main.js` instead of `index.js`
 ```
 # docker-compose.override.yml
-
-version: '2'
-
-services:
+[...]
     node:
         entrypoint: run-nodock "node main.js"
 ```
@@ -188,10 +185,7 @@ services:
 The default `NODE_ENV` value is `production`, you can change it to development by doing the following
 ```
 # docker-compose.override.yml
-
-version: '2'
-
-services:
+[...]
     node:
         environment:
             NODE_ENV: development
@@ -201,23 +195,29 @@ services:
 The default node version is `latest`, this is **NOT** advisable for production
 ```
 # docker-compose.override.yml
-
-version: '2'
-
-services:
+[...]
     node:
         build:
             args:
                 node_version: 4.6.0
 ```
+<a name="Node-Project-Path"></a>
+#### Change the Node project path
+You can specify a `project_path` to change the directory in which `npm` will perform it's `install` command and the directory in which `run-nodock` will run the entrypoint script. This is most desirable when running more than one Node project at a time since they are bound to each have their own `package.json` file.
+```
+# docker-compose.override.yml
+[...]
+    node:
+        build:
+            args:
+                project_path: somefolder # note that this is the same as "/opt/app/somefolder"
+
+```
 <a name="MySQL-Database-User"></a>
 #### Change the MySQL database/user/password
 ```
 # docker-compose.override.yml
-
-version: '2'
-
-services:
+[...]
     mysql:
         build:
             args:
@@ -230,10 +230,7 @@ services:
 Use port `8080` instead of `8000` to bind your Node server
 ```
 # docker-compose.override.yml
-
-version: '2'
-
-services:
+[...]
     nginx:
         build:
             args:
