@@ -8,6 +8,7 @@ Docker Compose for Node projects with Node, MySQL, NGINX and Certbot images
 - [Requirements](#Requirements)
 - [Installation](#Installation)
 - [Usage](#Usage)
+- [Workspace](#Workspace)
 - [HTTPS](#HTTPS)
     - [Self-signed certificates](#SelfSigned)
     - [Certbot](#Certbot)
@@ -45,7 +46,7 @@ git clone https://github.com/Osedea/nodock.git
 ```
 cd nodock
 # Simple app
-docker-compose up -d node mysql nginx
+docker-compose up -d node nginx
 # or
 # All containers
 docker-compose up -d
@@ -61,6 +62,10 @@ version: '2'
 services:
     [...]
 ```
+
+<a name="Workspace"></a>
+## Workspace
+The `workspace` container is where you want to be manually running commands for `NoDock`. You can use this container to initialize your project, for task-automation, for [cronjobs](#Cronjobs), etc.
 
 <a name="HTTPS"></a>
 ## Using HTTPS
@@ -164,6 +169,16 @@ server {
     }
 }
 ```
+
+<a name="Cronjobs"></a>
+## Cronjobs
+You can run cronjobs in the [Workspace](#Workspace) by storing them in the `workspace/crontab/root` file.
+```
+# workspace/crontab/root
+
+* * * * * echo "Every Minute" >> /var/log/cron.log
+```
+
 <a name="More-Options"></a>
 ## More Options
 To customize the NoDock installation, either add a `docker-compose.override.yml` in the NoDock directory or store environment specific configurations.
@@ -235,6 +250,21 @@ Use port `8080` instead of `8000` to bind your Node server
         build:
             args:
                 web_reverse_proxy_port: "8080"
+```
+<a name="Change-the-timezone"></a>
+#### Change the timezone
+
+To change the timezone for the `workspace` container, modify the `TZ` build argument in the Docker Compose file to one in the [TZ database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
+
+For example, if I want the timezone to be `New York`:
+```
+# docker-compose.override.yml
+[...]
+     workspace:
+        build:
+            context: ./workspace
+            args:
+                tz: "America/New_York"
 ```
 <a name="Contributing"></a>
 ## Contributing

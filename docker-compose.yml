@@ -55,6 +55,19 @@ services:
             - nginx
         volumes_from:
             - volumes
+            
+    workspace:
+        build:
+            context: ./workspace
+            args:
+                node_version: latest
+                tz: "UTC"
+        links:
+            - nginx
+        volumes:
+            - ../:/opt/app
+        volumes_from:
+            - volumes
 
     volumes:
         image: tianon/true
