@@ -285,3 +285,7 @@ NoDock uses Open Source components. You can find the source code of their open s
 Project: LaraDock https://github.com/LaraDock/laradock <br>
 Copyright (c) 2016 Mahmoud Zalt (mahmoud@zalt.me) <br>
 License (MIT) https://github.com/LaraDock/laradock/blob/master/LICENSE <br>
+
+Project: baseimage-docker https://github.com/phusion/baseimage-docker <br>
+Copyright (c)  2013-2015 Phusion Holding B.V. <br>
+License (MIT) https://github.com/phusion/baseimage-docker/blob/master/LICENSE.txt <br>
