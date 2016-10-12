@@ -198,13 +198,14 @@ Use `main.js` instead of `index.js`
 ```
 <a name="Node-Environment"></a>
 #### Change the Node Environment
-The default `NODE_ENV` value is `production`, you can change it to development by doing the following
+The default `node_env` value is `production`, you can change it to development by doing the following
 ```
 # docker-compose.override.yml
 [...]
     node:
-        environment:
-            NODE_ENV: development
+        build:
+            args:
+                node_env: development
 ```
 <a name="Node-Version"></a>
 #### Use a specific Node version

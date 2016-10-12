@@ -4,10 +4,12 @@ RUN apt-get update &&\
     apt-get install -y npm &&\
     npm install -g n
 
+ARG node_env
 ARG node_version
 ARG project_path
 
 ENV PROJECT_PATH=$project_path
+ENV NODE_ENV=$node_env
 
 # Add
 RUN groupadd -r www-app &&\
