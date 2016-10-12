@@ -8,15 +8,15 @@ COPY certs/* /etc/ssl/
 
 COPY sites /etc/nginx/templates
 
-ARG web_reverse_proxy_port
-ARG web_ssl
-ARG self_signed
-ARG no_default
+ARG WEB_REVERSE_PROXY_PORT
+ARG WEB_SSL
+ARG SELF_SIGNED
+ARG NO_DEFAULT
 
-ENV WEB_REVERSE_PROXY_PORT=$web_reverse_proxy_port
-ENV WEB_SSL=$web_ssl
-ENV SELF_SIGNED=$self_signed
-ENV NO_DEFAULT=$no_default
+ENV WEB_REVERSE_PROXY_PORT=$WEB_REVERSE_PROXY_PORT
+ENV WEB_SSL=$WEB_SSL
+ENV SELF_SIGNED=$SELF_SIGNED
+ENV NO_DEFAULT=$NO_DEFAULT
 
 RUN /bin/bash /root/scripts/build-nginx.sh
 

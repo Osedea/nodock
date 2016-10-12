@@ -78,12 +78,12 @@ By default HTTPS is disabled. To enable it, you may use the following settings
     nginx:
         build:
             args:
-                web_ssl: "true"
+                WEB_SSL: "true"
 ```
 Add your certificate to `nginx/certs/cacert.pem` and the private key to `nginx/certs/privkey.pem`.
 <a name="SelfSigned"></a>
 #### Generate and use a self-signed cert
-`self_signed: "true"` will generate the necessary files, do note that `self_signed: "true"` as no effect if `web_ssl: "false"`
+`SELF_SIGNED: "true"` will generate the necessary files, do note that `SELF_SIGNED: "true"` as no effect if `WEB_SSL: "false"`
 
 ```
 # docker-compose.override.yml
@@ -91,8 +91,8 @@ Add your certificate to `nginx/certs/cacert.pem` and the private key to `nginx/c
     nginx:
         build:
             args:
-                web_ssl: "true"
-                self_signed: "true"
+                WEB_SSL: "true"
+                SELF_SIGNED: "true"
 ```
 <a name="Certbot"></a>
 #### Use Certbot (Let's Encrypt) to generate the cert
@@ -104,7 +104,7 @@ Add your certificate to `nginx/certs/cacert.pem` and the private key to `nginx/c
     nginx:
         build:
             args:
-                web_ssl: "true"
+                WEB_SSL: "true"
     certbot:
         environment:
             CN: "example.com"
@@ -121,12 +121,12 @@ The default NGINX server block configuration is aimed at web projects but if you
     nginx:
         build:
             args:
-                no_default: "true"
+                NO_DEFAULT: "true"
         ports:
             - "10000:10000"
 ```
 
-Do note that using `no_default` makes `web_reverse_proxy_port`, `web_ssl` and `self_signed` have no effect.
+Do note that using `NO_DEFAULT` makes `WEB_REVERSE_PROXY_PORT`, `WEB_SSL` and `SELF_SIGNED` have no effect.
 
 You will then have to provide your own NGINX server block like so
 
@@ -198,14 +198,14 @@ Use `main.js` instead of `index.js`
 ```
 <a name="Node-Environment"></a>
 #### Change the Node Environment
-The default `node_env` value is `production`, you can change it to development by doing the following
+The default `NODE_ENV` value is `production`, you can change it to development by doing the following
 ```
 # docker-compose.override.yml
 [...]
     node:
         build:
             args:
-                node_env: development
+                NODE_ENV: development
 ```
 <a name="Node-Version"></a>
 #### Use a specific Node version
@@ -216,18 +216,18 @@ The default node version is `latest`, this is **NOT** advisable for production
     node:
         build:
             args:
-                node_version: 4.6.0
+                NODE_VERSION: 4.6.0
 ```
 <a name="Node-Project-Path"></a>
 #### Change the Node project path
-You can specify a `project_path` to change the directory in which `npm` will perform it's `install` command and the directory in which `run-nodock` will run the entrypoint script. This is most desirable when running more than one Node project at a time since they are bound to each have their own `package.json` file.
+You can specify a `PROJECT_PATH` to change the directory in which `npm` will perform it's `install` command and the directory in which `run-nodock` will run the entrypoint script. This is most desirable when running more than one Node project at a time since they are bound to each have their own `package.json` file.
 ```
 # docker-compose.override.yml
 [...]
     node:
         build:
             args:
-                project_path: somefolder # note that this is the same as "/opt/app/somefolder"
+                PROJECT_PATH: somefolder # note that this is the same as "/opt/app/somefolder"
 
 ```
 <a name="MySQL-Database-User"></a>
@@ -238,8 +238,8 @@ You can specify a `project_path` to change the directory in which `npm` will per
     mysql:
         build:
             args:
-                mysql_database: default_database
-                mysql_user: default_user
+                MYSQL_DATABASE: default_database
+                MYSQL_USER: default_user
                 mysql_password: secret
 ```
 <a name="NGINX-Reverse-Proxy-Port"></a>
@@ -251,7 +251,7 @@ Use port `8080` instead of `8000` to bind your Node server
     nginx:
         build:
             args:
-                web_reverse_proxy_port: "8080"
+                WEB_REVERSE_PROXY_PORT: "8080"
 ```
 <a name="Change-the-timezone"></a>
 #### Change the timezone
@@ -266,7 +266,7 @@ For example, if I want the timezone to be `New York`:
         build:
             context: ./workspace
             args:
-                tz: "America/New_York"
+                TZ: "America/New_York"
 ```
 <a name="Contributing"></a>
 ## Contributing

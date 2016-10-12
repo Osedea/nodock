@@ -4,19 +4,19 @@ RUN apt-get update &&\
     apt-get install -y npm &&\
     npm install -g n
 
-ARG node_env
-ARG node_version
-ARG project_path
+ARG NODE_ENV
+ARG NODE_VERSION
+ARG PROJECT_PATH
 
-ENV PROJECT_PATH=$project_path
-ENV NODE_ENV=$node_env
+ENV PROJECT_PATH=$PROJECT_PATH
+ENV NODE_ENV=$NODE_ENV
 
 # Add
 RUN groupadd -r www-app &&\
     useradd -r -g www-app www-app
 
-# Install the specified node_version or grab latest
-RUN n "$node_version"
+# Install the specified NODE_VERSION or grab latest
+RUN n "$NODE_VERSION"
 
 COPY scripts/run-nodock.sh /usr/bin/run-nodock
 

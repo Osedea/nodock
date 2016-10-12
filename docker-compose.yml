@@ -6,9 +6,9 @@ services:
         build:
             context: ./node
             args:
-                node_version: latest
-                project_path: /opt/app/
-                node_env: production
+                NODE_VERSION: latest
+                PROJECT_PATH: /opt/app/
+                NODE_ENV: production
         volumes:
             - ../:/opt/app
         extra_hosts:
@@ -20,8 +20,8 @@ services:
         build:
             context: ./mysql
             args:
-                mysql_database: default_database
-                mysql_user: default_user
+                MYSQL_DATABASE: default_database
+                MYSQL_USER: default_user
                 mysql_password: secret
         volumes_from:
             - volumes
@@ -34,10 +34,10 @@ services:
         build:
             context: ./nginx
             args:
-                web_reverse_proxy_port: "8000"
-                web_ssl: "false"
-                self_signed: "false"
-                no_default: "false"
+                WEB_REVERSE_PROXY_PORT: "8000"
+                WEB_SSL: "false"
+                SELF_SIGNED: "false"
+                NO_DEFAULT: "false"
         volumes_from:
             - volumes
         ports:
@@ -59,8 +59,8 @@ services:
         build:
             context: ./workspace
             args:
-                node_version: latest
-                tz: "UTC"
+                NODE_VERSION: latest
+                TZ: "UTC"
         links:
             - nginx
         volumes:

@@ -5,12 +5,12 @@ ADD startup /etc/mysql/startup
 
 RUN chown -R mysql:root /var/lib/mysql/
 
-ARG mysql_database
-ARG mysql_user
+ARG MYSQL_DATABASE
+ARG MYSQL_USER
 ARG mysql_password
 
-ENV MYSQL_DATABASE=$mysql_database
-ENV MYSQL_USER=$mysql_user
+ENV MYSQL_DATABASE=$MYSQL_DATABASE
+ENV MYSQL_USER=$MYSQL_USER
 ENV MYSQL_PASSWORD=$mysql_password
 
 RUN sed -i 's/MYSQL_DATABASE/'$MYSQL_DATABASE'/g' /etc/mysql/startup && \

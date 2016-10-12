@@ -11,18 +11,18 @@ RUN apt-get update && \
 ## Timezone
 ##
 
-ARG tz=UTC
-ENV tz ${tz}
-RUN ln -snf /usr/share/zoneinfo/$tz /etc/localtime && echo $tz > /etc/timezone
+ARG TZ=UTC
+ENV TZ ${TZ}
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 ##
 ## Node
 ##
 
-ARG node_version
+ARG NODE_VERSION
 
-# Install the specified node_version or grab latest
-RUN n "$node_version"
+# Install the specified NODE_VERSION or grab latest
+RUN n "$NODE_VERSION"
 
 ##
 ## Cron
