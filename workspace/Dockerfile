@@ -31,3 +31,6 @@ RUN n "$node_version"
 COPY ./crontab /var/spool/cron/crontabs
 
 WORKDIR /opt/app
+
+
+ENTRYPOINT sleep infinity
