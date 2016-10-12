@@ -23,6 +23,7 @@ Docker Compose for Node projects with Node, MySQL, NGINX and Certbot images
     - [Change NGINX reverse proxy port](#NGINX-Reverse-Proxy-Port)
 - [Contributing](#Contributing)
 - [License](#License)
+- [Credits](#Credits)
 
 <a name="Requirements"></a>
 ## Requirements
@@ -276,3 +277,10 @@ We thank you in advance for contributing.
 <a name="License"></a>
 ## License
 [MIT License](https://github.com/laradock/laradock/blob/master/LICENSE) (MIT)
+<a name="Credits"></a>
+## Credits
+NoDock uses Open Source components. You can find the source code of their open source projects along with license information below. We acknowledge and are grateful to these developers for their contributions to open source.
+
+Project: LaraDock https://github.com/LaraDock/laradock <br>
+Copyright (c) 2016 Mahmoud Zalt (mahmoud@zalt.me) <br>
+License (MIT) https://github.com/LaraDock/laradock/blob/master/LICENSE <br>
