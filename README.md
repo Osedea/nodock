@@ -246,7 +246,7 @@ You can specify a `PROJECT_PATH` to change the directory in which `npm` will per
             args:
                 MYSQL_DATABASE: default_database
                 MYSQL_USER: default_user
-                mysql_password: secret
+                MYSQL_PASSWORD: secret
 ```
 <a name="NGINX-Reverse-Proxy-Port"></a>
 #### Change the NGINX reverse proxy port
