@@ -7,11 +7,11 @@ RUN chown -R mysql:root /var/lib/mysql/
 
 ARG MYSQL_DATABASE
 ARG MYSQL_USER
-ARG mysql_password
+ARG MYSQL_PASSWORD
 
 ENV MYSQL_DATABASE=$MYSQL_DATABASE
 ENV MYSQL_USER=$MYSQL_USER
-ENV MYSQL_PASSWORD=$mysql_password
+ENV MYSQL_PASSWORD=$MYSQL_PASSWORD
 
 RUN sed -i 's/MYSQL_DATABASE/'$MYSQL_DATABASE'/g' /etc/mysql/startup && \
     sed -i 's/MYSQL_USER/'$MYSQL_USER'/g' /etc/mysql/startup && \
