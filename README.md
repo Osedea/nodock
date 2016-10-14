@@ -1,5 +1,5 @@
 # NoDock
-Docker Compose for Node projects with Node, MySQL, NGINX and Certbot images
+Docker Compose for Node projects with Node, MySQL, MongoDB, NGINX and Certbot images
 
 **WARNING: THIS PROJECT IS STILL IN EARLY DEVELOPMENT, DO NOT USE IN PRODUCTION**
 
