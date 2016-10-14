@@ -8,6 +8,7 @@ Docker Compose for Node projects with Node, MySQL, NGINX and Certbot images
 - [Requirements](#Requirements)
 - [Installation](#Installation)
 - [Usage](#Usage)
+- [Examples](#Examples)
 - [Workspace](#Workspace)
 - [HTTPS](#HTTPS)
     - [Self-signed certificates](#SelfSigned)
@@ -63,6 +64,11 @@ version: '2'
 services:
     [...]
 ```
+<a name="Examples"></a>
+## Examples
+We provide examples of configurations you might use for a specific stack. Each example has it's own README file with instructions.
+
+* [Simple Web](https://github.com/Osedea/nodock/tree/master/_examples/simple-web) - Node + NGINX
 
 <a name="Workspace"></a>
 ## Workspace
