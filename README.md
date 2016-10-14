@@ -47,11 +47,8 @@ git clone https://github.com/Osedea/nodock.git
 ## Usage
 ```
 cd nodock
-# Simple app
+# Run "node" and "nginx"
 docker-compose up -d node nginx
-# or
-# All containers
-docker-compose up -d
 ```
 
 To overwrite the `docker-compose.yml` file you can use a `docker-compose.override.yml`
@@ -69,6 +66,7 @@ services:
 We provide examples of configurations you might use for a specific stack. Each example has it's own README file with instructions.
 
 * [Simple Web](https://github.com/Osedea/nodock/tree/master/_examples/simple-web) - Node + NGINX
+* [Mongo](https://github.com/Osedea/nodock/tree/master/_examples/mongo) - MongoDB + Node + NGINX
 
 <a name="Workspace"></a>
 ## Workspace
