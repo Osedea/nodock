@@ -20,6 +20,8 @@ Docker Compose for Node projects with Node, MySQL, MongoDB, NGINX, Certbot and R
     - [Change Node project location](#Node-Project-Path)
     - [Change MySQL database/user/password](#MySQL-Database-User)
     - [Change NGINX reverse proxy port](#NGINX-Reverse-Proxy-Port)
+    - [Change the timezone](#Change-the-timezone)
+    - [Use RabbitMQ plugins](#Use-RabbitMQ-plugins)
 - [Contributing](#Contributing)
 - [License](#License)
 - [Credits](#credits)
@@ -270,6 +272,20 @@ For example, if I want the timezone to be `New York`:
             context: ./workspace
             args:
                 TZ: "America/New_York"
+```
+<a name="Use-RabbitMQ-plugins"></a>
+#### Use RabbitMQ plugins
+At the moment, NoDock supports 2 plugins: [Management](https://www.rabbitmq.com/management.html) and [Federation](https://www.rabbitmq.com/federation.html).
+
+To activate them, change their values to `true` in your docker-compose file:
+```
+# docker-compose.override.yml
+[...]
+    rabbitmq:
+        build:
+            args:
+                - MANAGEMENT=true
+                - FEDERATION=true
 ```
 <a name="Contributing"></a>
 ## Contributing
