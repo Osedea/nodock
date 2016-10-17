@@ -1,5 +1,5 @@
 # NoDock
-Docker Compose for Node projects with Node, MySQL, MongoDB, NGINX and Certbot images
+Docker Compose for Node projects with Node, MySQL, MongoDB, NGINX, Certbot and RabbitMQ images
 
 ## Contents
 
@@ -65,6 +65,7 @@ We provide examples of configurations you might use for a specific stack. Each e
 
 * [Simple Web](https://github.com/Osedea/nodock/tree/master/_examples/simple-web) - Node + NGINX
 * [Mongo](https://github.com/Osedea/nodock/tree/master/_examples/mongo) - MongoDB + Node + NGINX
+* [RabbitMQ](https://github.com/Osedea/nodock/tree/master/_examples/rabbitmq) - RabbitMQ + Node + NGINX
 
 <a name="Workspace"></a>
 ## Workspace
