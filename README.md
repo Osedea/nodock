@@ -35,17 +35,17 @@ Docker Compose for Node projects with Node, MySQL, MongoDB, NGINX, Certbot and R
 <a name="Installation"></a>
 ## Installation
 As a git submodule:
-```
+```bash
 git submodule add https://github.com/Osedea/nodock.git
 ```
 
 Clone into your project:
-```
+```bash
 git clone https://github.com/Osedea/nodock.git
 ```
 <a name="Usage"></a>
 ## Usage
-```
+```bash
 cd nodock
 # Run "node" and "nginx"
 docker-compose up -d node nginx
@@ -53,7 +53,7 @@ docker-compose up -d node nginx
 
 To overwrite the `docker-compose.yml` file you can use a `docker-compose.override.yml`
 
-```
+```yaml
 # docker-compose.override.yml
 
 version: '2'
@@ -77,7 +77,7 @@ The `workspace` container is where you want to be manually running commands for 
 ## Using HTTPS
 By default HTTPS is disabled. To enable it, you may use the following settings
 
-```
+```yaml
 # docker-compose.override.yml
 [...]
     nginx:
@@ -90,7 +90,7 @@ Add your certificate to `nginx/certs/cacert.pem` and the private key to `nginx/c
 #### Generate and use a self-signed cert
 `SELF_SIGNED: "true"` will generate the necessary files, do note that `SELF_SIGNED: "true"` as no effect if `WEB_SSL: "false"`
 
-```
+```yaml
 # docker-compose.override.yml
 [...]
     nginx:
@@ -103,7 +103,7 @@ Add your certificate to `nginx/certs/cacert.pem` and the private key to `nginx/c
 #### Use Certbot (Let's Encrypt) to generate the cert
 `CN` must be a publicly accessible address and `EMAIL` should be the server admin contact email.
 
-```
+```yaml
 # docker-compose.override.yml
 [...]
     nginx:
@@ -120,7 +120,7 @@ Don't forget to bring up the container if you plan on using certbot (`docker-com
 ## Running a single non-web container
 The default NGINX server block configuration is aimed at web projects but if you want to have a single non-web container you can do something similar to the following configuration.
 
-```
+```yaml
 # docker-compose.override.yml
 [...]
     nginx:
@@ -150,7 +150,7 @@ server {
 ## Running multiple node containers
 To add more node containers, simply add the following to your `docker-compose.override.yml` or environment specific docker-compose file.
 
-```
+```yaml
 # docker-compose.override.yml
 [...]
     node2: # name of new container
@@ -189,13 +189,13 @@ You can run cronjobs in the [Workspace](#Workspace) by storing them in the `work
 ## More Options
 To customize the NoDock installation, either add a `docker-compose.override.yml` in the NoDock directory or store environment specific configurations.
 
-```
+```bash
 docker-compose -f nodock/docker-compose.yml -f docker-compose.dev.yml up -d
 ```
 <a name="Node-Entrypoint"></a>
 #### Change the node entrypoint
 Use `main.js` instead of `index.js`
-```
+```yaml
 # docker-compose.override.yml
 [...]
     node:
@@ -204,7 +204,7 @@ Use `main.js` instead of `index.js`
 <a name="Node-Environment"></a>
 #### Change the Node Environment
 The default `NODE_ENV` value is `production`, you can change it to development by doing the following
-```
+```yaml
 # docker-compose.override.yml
 [...]
     node:
@@ -215,7 +215,7 @@ The default `NODE_ENV` value is `production`, you can change it to development b
 <a name="Node-Version"></a>
 #### Use a specific Node version
 The default node version is `latest`, this is **NOT** advisable for production
-```
+```yaml
 # docker-compose.override.yml
 [...]
     node:
@@ -226,7 +226,7 @@ The default node version is `latest`, this is **NOT** advisable for production
 <a name="Node-Project-Path"></a>
 #### Change the Node project path
 You can specify a `PROJECT_PATH` to change the directory in which `npm` will perform it's `install` command and the directory in which `run-nodock` will run the entrypoint script. This is most desirable when running more than one Node project at a time since they are bound to each have their own `package.json` file.
-```
+```yaml
 # docker-compose.override.yml
 [...]
     node:
@@ -237,7 +237,7 @@ You can specify a `PROJECT_PATH` to change the directory in which `npm` will per
 ```
 <a name="MySQL-Database-User"></a>
 #### Change the MySQL database/user/password
-```
+```yaml
 # docker-compose.override.yml
 [...]
     mysql:
@@ -250,7 +250,7 @@ You can specify a `PROJECT_PATH` to change the directory in which `npm` will per
 <a name="NGINX-Reverse-Proxy-Port"></a>
 #### Change the NGINX reverse proxy port
 Use port `8080` instead of `8000` to bind your Node server
-```
+```yaml
 # docker-compose.override.yml
 [...]
     nginx:
@@ -264,7 +264,7 @@ Use port `8080` instead of `8000` to bind your Node server
 To change the timezone for the `workspace` container, modify the `TZ` build argument in the Docker Compose file to one in the [TZ database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
 
 For example, if I want the timezone to be `New York`:
-```
+```yaml
 # docker-compose.override.yml
 [...]
      workspace:
@@ -278,7 +278,7 @@ For example, if I want the timezone to be `New York`:
 At the moment, NoDock supports 2 plugins: [Management](https://www.rabbitmq.com/management.html) and [Federation](https://www.rabbitmq.com/federation.html).
 
 To activate them, change their values to `true` in your docker-compose file:
-```
+```yaml
 # docker-compose.override.yml
 [...]
     rabbitmq:
