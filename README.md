@@ -83,7 +83,7 @@ By default HTTPS is disabled. To enable it, you may use the following settings
     nginx:
         build:
             args:
-                WEB_SSL: "true"
+                - WEB_SSL=true
 ```
 Add your certificate to `nginx/certs/cacert.pem` and the private key to `nginx/certs/privkey.pem`.
 <a name="SelfSigned"></a>
@@ -96,8 +96,8 @@ Add your certificate to `nginx/certs/cacert.pem` and the private key to `nginx/c
     nginx:
         build:
             args:
-                WEB_SSL: "true"
-                SELF_SIGNED: "true"
+                - WEB_SSL=true
+                - SELF_SIGNED=true
 ```
 <a name="Certbot"></a>
 #### Use Certbot (Let's Encrypt) to generate the cert
@@ -109,11 +109,11 @@ Add your certificate to `nginx/certs/cacert.pem` and the private key to `nginx/c
     nginx:
         build:
             args:
-                WEB_SSL: "true"
+                - WEB_SSL=true
     certbot:
         environment:
-            CN: "example.com"
-            EMAIL: "fake@gmail.com"
+            - CN=example.com
+            - EMAIL=fake@gmail.com
 ```
 Don't forget to bring up the container if you plan on using certbot (`docker-compose up -d certbot`).
 <a name="Non-Web"></a>
@@ -126,7 +126,7 @@ The default NGINX server block configuration is aimed at web projects but if you
     nginx:
         build:
             args:
-                NO_DEFAULT: "true"
+                -NO_DEFAULT=true
         ports:
             - "10000:10000"
 ```
@@ -210,7 +210,7 @@ The default `NODE_ENV` value is `production`, you can change it to development b
     node:
         build:
             args:
-                NODE_ENV: development
+                - NODE_ENV=development
 ```
 <a name="Node-Version"></a>
 #### Use a specific Node version
@@ -221,7 +221,7 @@ The default node version is `latest`, this is **NOT** advisable for production
     node:
         build:
             args:
-                NODE_VERSION: 4.6.0
+                - NODE_VERSION=4.6.0
 ```
 <a name="Node-Project-Path"></a>
 #### Change the Node project path
@@ -243,9 +243,9 @@ You can specify a `PROJECT_PATH` to change the directory in which `npm` will per
     mysql:
         build:
             args:
-                MYSQL_DATABASE: default_database
-                MYSQL_USER: default_user
-                MYSQL_PASSWORD: secret
+                - MYSQL_DATABASE=default_database
+                - MYSQL_USER=default_user
+                - MYSQL_PASSWORD=secret
 ```
 <a name="NGINX-Reverse-Proxy-Port"></a>
 #### Change the NGINX reverse proxy port
@@ -256,7 +256,7 @@ Use port `8080` instead of `8000` to bind your Node server
     nginx:
         build:
             args:
-                WEB_REVERSE_PROXY_PORT: "8080"
+                - WEB_REVERSE_PROXY_PORT=8080
 ```
 <a name="Change-the-timezone"></a>
 #### Change the timezone
@@ -271,7 +271,7 @@ For example, if I want the timezone to be `New York`:
         build:
             context: ./workspace
             args:
-                TZ: "America/New_York"
+                - TZ="America/New_York"
 ```
 <a name="Use-RabbitMQ-plugins"></a>
 #### Use RabbitMQ plugins
