@@ -14,8 +14,11 @@ cp nodock/_examples/simple-web/package.json .
 ### Usage
 
 ```bash
+npm i
+
 cd nodock/
+
 docker-compose up -d mongo node nginx
 ```
 
-By going to `127.0.0.1` in your browser you should be seeing a message indicating that `node` as successfully connected to `mongo`.
+By going to `127.0.0.1` in your browser you should be seeing a message indicating that `node` has successfully connected to `mongo`.

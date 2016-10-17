@@ -14,7 +14,10 @@ cp nodock/_examples/simple-web/package.json .
 ### Usage
 
 ```bash
+npm i
+
 cd nodock/
+
 docker-compose up -d node nginx
 ```
 
