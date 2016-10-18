@@ -23,6 +23,7 @@ Docker Compose for Node projects with Node, MySQL, MongoDB, NGINX, Certbot and R
     - [Change NGINX reverse proxy port](#NGINX-Reverse-Proxy-Port)
     - [Change the timezone](#Change-the-timezone)
     - [Use RabbitMQ plugins](#Use-RabbitMQ-plugins)
+    - [Change the RabbitMQ user/password](#Change-RabbitMQ-User)
 - [Contributing](#Contributing)
 - [License](#License)
 - [Credits](#credits)
@@ -298,6 +299,17 @@ To activate them, change their values to `true` in your docker-compose file:
             args:
                 - MANAGEMENT=true
                 - FEDERATION=true
+```
+<a name="Change-RabbitMQ-User"></a>
+#### Change the RabbitMQ user/password
+```yaml
+# docker-compose.override.yml
+[...]
+    rabbitmq:
+        build:
+            args:
+                - RABBITMQ_DEFAULT_USER=custom_user
+                - RABBITMQ_DEFAULT_PASS=custom_pass
 ```
 <a name="Contributing"></a>
 ## Contributing
