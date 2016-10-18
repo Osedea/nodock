@@ -69,11 +69,10 @@ services:
             args:
                 - MANAGEMENT=false
                 - FEDERATION=false
+                - RABBITMQ_DEFAULT_USER=guest
+                - RABBITMQ_DEFAULT_PASS=guest
         expose:
             - "5672"
-        environment:
-            RABBITMQ_DEFAULT_USER: guest
-            RABBITMQ_DEFAULT_PASS: guest
 
     workspace:
         build:
