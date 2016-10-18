@@ -12,8 +12,6 @@ services:
                 - YARN=false
         volumes:
             - ../:/opt/app
-        extra_hosts:
-            - "dockerhost:10.0.75.1"
         entrypoint: run-nodock "node index.js"
         tty: true
 
@@ -28,8 +26,6 @@ services:
             - volumes
         expose:
             - "3306"
-        extra_hosts:
-            - "dockerhost:10.0.75.1"
 
     mongo:
         build: ./mongo
@@ -51,8 +47,6 @@ services:
         ports:
             - "80:80"
             - "443:443"
-        extra_hosts:
-            - "dockerhost:10.0.75.1"
         tty: true
 
     certbot:
