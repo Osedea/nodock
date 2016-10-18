@@ -24,6 +24,9 @@ ARG NODE_VERSION
 # Install the specified NODE_VERSION or grab latest
 RUN n "$NODE_VERSION"
 
+# Install YARN
+RUN npm i -g yarn
+
 ##
 ## Cron
 ##

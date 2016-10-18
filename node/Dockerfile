@@ -7,7 +7,9 @@ RUN apt-get update &&\
 ARG NODE_ENV
 ARG NODE_VERSION
 ARG PROJECT_PATH
+ARG YARN
 
+ENV YARN=$YARN
 ENV PROJECT_PATH=$PROJECT_PATH
 ENV NODE_ENV=$NODE_ENV
 
@@ -17,6 +19,12 @@ RUN groupadd -r www-app &&\
 
 # Install the specified NODE_VERSION or grab latest
 RUN n "$NODE_VERSION"
+
+# Install Yarn
+
+RUN if [ ${YARN} = true ]; then \
+    npm install -g yarn \
+;fi
 
 COPY scripts/run-nodock.sh /usr/bin/run-nodock
 

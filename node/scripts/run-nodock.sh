@@ -10,6 +10,10 @@ fi
 
 cd $PROJECT_PATH
 
-npm install
+if [[ $YARN = true ]]; then
+    yarn install
+else
+    npm install
+fi
 
 su -c "cd $PROJECT_PATH; $SCRIPT" -s /bin/bash www-app

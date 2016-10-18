@@ -9,6 +9,7 @@ services:
                 - NODE_VERSION=latest
                 - PROJECT_PATH=/opt/app/
                 - NODE_ENV=production
+                - YARN=false
         volumes:
             - ../:/opt/app
         extra_hosts:
