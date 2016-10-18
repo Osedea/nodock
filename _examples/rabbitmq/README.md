@@ -14,8 +14,6 @@ cp nodock/_examples/rabbitmq/package.json .
 ### Usage
 
 ```bash
-npm i
-
 cd nodock/
 
 docker-compose up -d rabbitmq node nginx
