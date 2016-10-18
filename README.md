@@ -14,6 +14,7 @@ Docker Compose for Node projects with Node, MySQL, MongoDB, NGINX, Certbot and R
 - [Non-web project](#Non-Web)
 - [Multiple Node containers](#Multi-Node)
 - [More options](#More-Options)
+    - [Use Yarn](#Use-Yarn)
     - [Change Node entrypoint](#Node-Entrypoint)
     - [Change Node environment](#Node-Environment)
     - [Change Node version](#Node-Version)
@@ -191,6 +192,17 @@ To customize the NoDock installation, either add a `docker-compose.override.yml`
 
 ```bash
 docker-compose -f nodock/docker-compose.yml -f docker-compose.dev.yml up -d
+```
+<a name="Use-Yarn"></a>
+#### Use Yarn
+Set the `YARN` argument to `true`.
+```yaml
+# docker-compose.override.yml
+[...]
+    node:
+        build:
+            args:
+                - YARN=true
 ```
 <a name="Node-Entrypoint"></a>
 #### Change the node entrypoint
