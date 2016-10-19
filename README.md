@@ -1,5 +1,5 @@
 # NoDock
-Docker Compose for Node projects with Node, MySQL, MongoDB, NGINX, Certbot and RabbitMQ images
+Docker Compose for Node projects with Node, MySQL, MongoDB, NGINX, Memcached,Certbot and RabbitMQ images
 
 ## Contents
 
