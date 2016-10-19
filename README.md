@@ -71,6 +71,7 @@ We provide examples of configurations you might use for a specific stack. Each e
 * [MySQL](https://github.com/Osedea/nodock/tree/master/_examples/mysql) - MySQL + Node + NGINX
 * [Mongo](https://github.com/Osedea/nodock/tree/master/_examples/mongo) - MongoDB + Node + NGINX
 * [RabbitMQ](https://github.com/Osedea/nodock/tree/master/_examples/rabbitmq) - RabbitMQ + Node + NGINX
+* [Memcached](https://github.com/Osedea/nodock/tree/master/_examples/memcached) - Memcached + Node + NGINX
 
 <a name="Workspace"></a>
 ## Workspace
