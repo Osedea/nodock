@@ -4,10 +4,10 @@ RUN apt-get update &&\
     apt-get install -y npm &&\
     npm install -g n
 
-ARG NODE_ENV
-ARG NODE_VERSION
-ARG PROJECT_PATH
-ARG YARN
+ARG NODE_ENV=production
+ARG NODE_VERSION=latest
+ARG PROJECT_PATH=/opt/app/
+ARG YARN=false
 
 ENV YARN=$YARN
 ENV PROJECT_PATH=$PROJECT_PATH
