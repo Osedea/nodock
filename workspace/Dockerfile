@@ -19,7 +19,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 ## Node
 ##
 
-ARG NODE_VERSION
+ARG NODE_VERSION=latest
 
 # Install the specified NODE_VERSION or grab latest
 RUN n "$NODE_VERSION"
