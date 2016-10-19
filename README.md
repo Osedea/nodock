@@ -67,6 +67,7 @@ services:
 We provide examples of configurations you might use for a specific stack. Each example has it's own README file with instructions.
 
 * [Simple Web](https://github.com/Osedea/nodock/tree/master/_examples/simple-web) - Node + NGINX
+* [MySQL](https://github.com/Osedea/nodock/tree/master/_examples/mysql) - MySQL + Node + NGINX
 * [Mongo](https://github.com/Osedea/nodock/tree/master/_examples/mongo) - MongoDB + Node + NGINX
 * [RabbitMQ](https://github.com/Osedea/nodock/tree/master/_examples/rabbitmq) - RabbitMQ + Node + NGINX
 

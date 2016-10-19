@@ -22,6 +22,7 @@ services:
                 - MYSQL_DATABASE=default_database
                 - MYSQL_USER=default_user
                 - MYSQL_PASSWORD=secret
+                - MYSQL_ROOT_PASSWORD=root
         volumes_from:
             - volumes
         expose:
