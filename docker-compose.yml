@@ -82,6 +82,14 @@ services:
         volumes_from:
             - volumes
 
+    memcached:
+        build:
+            context: ./memcached
+        volumes_from:
+            - volumes
+        expose:
+            - "11211"
+
     volumes:
         image: tianon/true
         volumes:
