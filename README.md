@@ -1,5 +1,14 @@
 # NoDock
-Docker Compose for Node projects with Node, MySQL, MongoDB, NGINX, Memcached,Certbot and RabbitMQ images
+Docker Compose for Node projects with Node, MySQL, MongoDB, NGINX, Memcached, Certbot and RabbitMQ images
+
+<a name="why-nodock"></a>
+## Why NoDock?
+
+The [docker Node.js](https://github.com/nodejs/docker-node) image is very simple, you give it an entrypoint and it runs it. This is fine for very simple/small scripts but for larger projects you'll probably want something a bit more robust.
+
+The goal of NoDock is to provide a complete environment for your node project: Node.js service(s), databases, web servers, queues, etc. while doing the "wiring" for you.
+
+You can use NoDock for simple projects by using one of the [examples](#Examples) or you can build upon them.
 
 ## Contents
 
