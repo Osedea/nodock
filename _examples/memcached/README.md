@@ -7,8 +7,7 @@ Copy the index file in this folder to the project root:
 ```bash
 cd <project_folder>/
 
-cp nodock/_examples/memcached/index.js .
-cp nodock/_examples/memcached/package.json .
+cp -r nodock/_examples/memcached/* .
 ```
 
 ### Usage
