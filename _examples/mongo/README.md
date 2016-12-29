@@ -7,8 +7,7 @@ Copy the index file in this folder to the project root:
 ```bash
 cd <project_folder>/
 
-cp nodock/_examples/mongo/index.js .
-cp nodock/_examples/mongo/package.json .
+cp -r nodock/_examples/mongo/* .
 ```
 
 ### Usage
