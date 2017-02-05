@@ -54,6 +54,9 @@ Clone into your project:
 ```bash
 git clone https://github.com/Osedea/nodock.git
 ```
+
+We recommend you [fork this repository](https://github.com/Osedea/nodock#fork-destination-box) if you intend to add project specific scripts/configurations.
+
 <a name="Usage"></a>
 ## Usage
 ```bash
