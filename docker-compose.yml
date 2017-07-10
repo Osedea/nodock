@@ -90,6 +90,17 @@ services:
         expose:
             - "11211"
 
+    rethinkdb:
+        build:
+            context: ./rethinkdb
+        volumes:
+            - ./data/rethinkdb:/data
+        expose:
+            - "28015"
+            - "29015"
+        ports:
+            - "28080:8080"
+
     volumes:
         image: tianon/true
         volumes:
