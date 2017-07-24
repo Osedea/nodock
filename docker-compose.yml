@@ -50,10 +50,26 @@ services:
             - "443:443"
         tty: true
 
+    apache:
+        build:
+            context: ./apache
+            args:
+                - WEB_REVERSE_PROXY_PORT=8000
+                - WEB_SSL=false
+                - SELF_SIGNED=false
+                - NO_DEFAULT=false
+        volumes_from:
+            - volumes
+        ports:
+            - "80:80"
+            - "443:443"
+        tty: true
+
     certbot:
         build:
             context: ./certbot
         links:
+            - apache
             - nginx
         volumes_from:
             - volumes
@@ -109,3 +125,4 @@ services:
             - ./data/mysql:/var/lib/mysql
             - ./data/mongo:/var/lib/mongodb
             - ./data/logs/nginx/:/var/log/nginx
+            - ./data/logs/apache/:/usr/local/apache2/logs

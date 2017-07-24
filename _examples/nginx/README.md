@@ -7,7 +7,7 @@ Copy the index file in this folder to the project root:
 ```bash
 cd <project_folder>/
 
-cp -r nodock/_examples/simple-web/* .
+cp -r nodock/_examples/nginx/* .
 ```
 
 ### Usage
