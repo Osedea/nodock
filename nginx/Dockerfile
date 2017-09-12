@@ -4,7 +4,7 @@ RUN mkdir /etc/nginx/sites-available && rm /etc/nginx/conf.d/default.conf
 ADD nginx.conf /etc/nginx/
 
 COPY scripts /root/scripts/
-COPY certs/* /etc/ssl/
+COPY certs /etc/ssl/
 
 COPY sites /etc/nginx/templates
 
