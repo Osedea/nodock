@@ -1,4 +1,4 @@
-version: '2'
+version: '3.3'
 
 services:
 
@@ -23,8 +23,8 @@ services:
                 - MYSQL_USER=default_user
                 - MYSQL_PASSWORD=secret
                 - MYSQL_ROOT_PASSWORD=root
-        volumes_from:
-            - volumes
+        volumes:
+            - ./data/mysql/:/var/lib/mysql
         expose:
             - "3306"
 
@@ -32,8 +32,8 @@ services:
         build: ./mongo
         expose:
             - "27017"
-        volumes_from:
-            - volumes
+        volumes:
+            - ./data/mongo/:/var/lib/mongodb
 
     nginx:
         build:
@@ -43,8 +43,9 @@ services:
                 - WEB_SSL=false
                 - SELF_SIGNED=false
                 - NO_DEFAULT=false
-        volumes_from:
-            - volumes
+        volumes:
+            - ./data/logs/nginx/:/var/log/nginx
+            - ./certbot/certs/:/var/certs
         ports:
             - "80:80"
             - "443:443"
@@ -58,8 +59,9 @@ services:
                 - WEB_SSL=false
                 - SELF_SIGNED=false
                 - NO_DEFAULT=false
-        volumes_from:
-            - volumes
+        volumes:
+            - ./data/logs/apache/:/usr/local/apache2/logs
+            - ./certbot/certs/:/var/certs
         ports:
             - "80:80"
             - "443:443"
@@ -71,8 +73,9 @@ services:
         links:
             - apache
             - nginx
-        volumes_from:
-            - volumes
+        volumes:
+          - ./certbot/letsencrypt/:/var/www/letsencrypt
+          - ./certbot/certs/:/var/certs
 
     rabbitmq:
         build:
@@ -95,14 +98,10 @@ services:
             - nginx
         volumes:
             - ../:/opt/app
-        volumes_from:
-            - volumes
 
     memcached:
         build:
             context: ./memcached
-        volumes_from:
-            - volumes
         expose:
             - "11211"
 
@@ -116,13 +115,3 @@ services:
             - "29015"
         ports:
             - "28080:8080"
-
-    volumes:
-        image: tianon/true
-        volumes:
-            - ./certbot/letsencrypt/:/var/www/letsencrypt
-            - ./certbot/certs/:/var/certs
-            - ./data/mysql:/var/lib/mysql
-            - ./data/mongo:/var/lib/mongodb
-            - ./data/logs/nginx/:/var/log/nginx
-            - ./data/logs/apache/:/usr/local/apache2/logs

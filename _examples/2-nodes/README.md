@@ -7,7 +7,7 @@ Copy all the files in this folder to the project root:
 ```bash
 cd <project_folder>/
 
-cp -r nodock/_examples/multiple-node/* .
+cp -r nodock/_examples/2-nodes/* .
 mv docker-compose.override.yml nodock/
 mv node2.conf nodock/nginx/sites/
 ```

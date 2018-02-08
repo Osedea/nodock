@@ -1,15 +1,20 @@
 # docker-compose.override.yml
 
-version: '2'
+version: '3.3'
 
 services:
     node2: # name of new container
-        extends: node # extends the settings from the "node" container
         build:
             context: ./node
             args:
+                - NODE_VERSION=latest
                 - PROJECT_PATH=second-app
+                - NODE_ENV=production
+                - YARN=false
+        volumes:
+            - ../:/opt/app
         entrypoint: run-nodock "node index.js" # the entrypoint for the "node2" container
+
     nginx:
         ports:
             - "10000:10000" # the port(s) to forward for the "node2" container

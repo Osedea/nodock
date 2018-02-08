@@ -43,7 +43,7 @@ You can use NoDock for simple projects by using one of the [examples](#Examples)
 <a name="Requirements"></a>
 ## Requirements
 
-* [Docker Engine 1.12+](https://docs.docker.com/engine/installation/)
+* [Docker Engine 17.06+](https://docs.docker.com/engine/installation/)
 * [Docker Compose 1.8+](https://docs.docker.com/compose/install/)
 
 <a name="Installation"></a>
@@ -176,7 +176,15 @@ To add more node containers, simply add the following to your `docker-compose.ov
 # docker-compose.override.yml
 [...]
     node2: # name of new container
-        extends: node # extends the settings from the "node" container
+        build:  # reuse the same values from the node service, cannot use extends in docker-compose 3+
+            context: ./node
+            args:
+                - NODE_VERSION=latest
+                - PROJECT_PATH=/opt/app/
+                - NODE_ENV=production
+                - YARN=false
+        volumes:
+            - ../:/opt/app
         entrypoint: run-nodock "node alternate.js" # the entrypoint for the "node2" container
     nginx:
         ports:

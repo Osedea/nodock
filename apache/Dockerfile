@@ -7,10 +7,11 @@ RUN mkdir /usr/local/apache2/templates \
 	&& mkdir /usr/local/apache2/sites-available \
 	&& rm /usr/local/apache2/conf/httpd.conf \
 	&& rm /usr/local/apache2/conf/extra/*.conf
-ADD httpd.conf /usr/local/apache2/conf
+
+COPY httpd.conf /usr/local/apache2/conf/httpd.conf
 
 COPY scripts /root/scripts/
-COPY certs/* /etc/ssl/
+COPY certs /etc/ssl/
 
 COPY sites /usr/local/apache2/templates
 
