@@ -105,6 +105,14 @@ services:
         expose:
             - "11211"
 
+    redis:
+        build:
+            context: ./redis
+        expose:
+            - "6379"
+        volumes:
+            - ./data/redis:/data
+
     rethinkdb:
         build:
             context: ./rethinkdb

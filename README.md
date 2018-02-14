@@ -1,6 +1,6 @@
 ![NoDock](https://raw.githubusercontent.com/Osedea/nodock/master/docs/images/logo.png)
 
-Docker Compose for Node projects with Node, MySQL, MongoDB, NGINX, Memcached, Certbot and RabbitMQ images
+Docker Compose for Node projects with Node, MySQL, MongoDB, NGINX, Memcached, Redis, Certbot and RabbitMQ images
 
 ![Node + Docker](https://raw.githubusercontent.com/Osedea/nodock/master/docs/images/nodock.jpg)
 
@@ -36,6 +36,7 @@ You can use NoDock for simple projects by using one of the [examples](#Examples)
     - [Change the timezone](#Change-the-timezone)
     - [Use RabbitMQ plugins](#Use-RabbitMQ-plugins)
     - [Change the RabbitMQ user/password](#Change-RabbitMQ-User)
+    - [Modify Redis config](#Modify-Redis-Config)
 - [Contributing](#Contributing)
 - [License](#License)
 - [Credits](#credits)
@@ -73,7 +74,7 @@ To overwrite the `docker-compose.yml` file you can use a `docker-compose.overrid
 ```yaml
 # docker-compose.override.yml
 
-version: '2'
+version: '3'
 
 services:
     [...]
@@ -88,6 +89,7 @@ We provide examples of configurations you might use for a specific stack. Each e
 * [Mongo](https://github.com/Osedea/nodock/tree/master/_examples/mongo) - MongoDB + Node + NGINX
 * [RabbitMQ](https://github.com/Osedea/nodock/tree/master/_examples/rabbitmq) - RabbitMQ + Node + NGINX
 * [Memcached](https://github.com/Osedea/nodock/tree/master/_examples/memcached) - Memcached + Node + NGINX
+* [Redis](https://github.com/Osedea/nodock/tree/master/_examples/redis) - Redis + Node + NGINX
 * [RethinkDB](https://github.com/Osedea/nodock/tree/master/_examples/rethinkdb) - RethinkDB + Node + NGINX
 * [2 Node Apps](https://github.com/Osedea/nodock/tree/master/_examples/2-nodes) - Node + Node + NGINX
 
@@ -339,6 +341,10 @@ To activate them, change their values to `true` in your docker-compose file:
                 - RABBITMQ_DEFAULT_USER=custom_user
                 - RABBITMQ_DEFAULT_PASS=custom_pass
 ```
+<a name="Modify-Redis-Config"></a>
+#### Modify the Redis config
+You can edit `redis/redis.conf` to modify the redis config.
+
 <a name="Contributing"></a>
 ## Contributing
 Do not hesitate to contribute to NoDock by creating an issue, fixing a bug or bringing a new idea to the table.
