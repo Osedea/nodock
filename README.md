@@ -32,6 +32,7 @@ You can use NoDock for simple projects by using one of the [examples](#Examples)
     - [Change Node version](#Node-Version)
     - [Change Node project location](#Node-Project-Path)
     - [Change MySQL database/user/password](#MySQL-Database-User)
+    - [Change PostgreSQL database/user/password](#PostgreSQL-Database-User)
     - [Change NGINX reverse proxy port](#NGINX-Reverse-Proxy-Port)
     - [Change the timezone](#Change-the-timezone)
     - [Use RabbitMQ plugins](#Use-RabbitMQ-plugins)
@@ -86,6 +87,7 @@ We provide examples of configurations you might use for a specific stack. Each e
 * [Simple Web with Apache](https://github.com/Osedea/nodock/tree/master/_examples/apache) - Node + Apache
 * [Simple Web with Nginx](https://github.com/Osedea/nodock/tree/master/_examples/nginx) - Node + NGINX
 * [MySQL](https://github.com/Osedea/nodock/tree/master/_examples/mysql) - MySQL + Node + NGINX
+* [PostgreSQL](https://github.com/Osedea/nodock/tree/master/_examples/postgresql) - PostgreSQL + Node + NGINX
 * [Mongo](https://github.com/Osedea/nodock/tree/master/_examples/mongo) - MongoDB + Node + NGINX
 * [RabbitMQ](https://github.com/Osedea/nodock/tree/master/_examples/rabbitmq) - RabbitMQ + Node + NGINX
 * [Memcached](https://github.com/Osedea/nodock/tree/master/_examples/memcached) - Memcached + Node + NGINX
@@ -290,6 +292,21 @@ You can specify a `PROJECT_PATH` to change the directory in which `npm` will per
                 - MYSQL_USER=default_user
                 - MYSQL_PASSWORD=secret
 ```
+<a name="PostgreSQL-Database-User"></a>
+#### Change the PostgreSQL database/user/password
+```yaml
+# docker-compose.override.yml
+[...]
+    postgresql:
+        build:
+            args:
+                - POSTGRES_DB=default_db
+                - POSTGRES_USER=default_user
+                - POSTGRES_PASSWORD=secret
+```
+
+
+
 <a name="NGINX-Reverse-Proxy-Port"></a>
 #### Change the NGINX reverse proxy port
 Use port `8080` instead of `8000` to bind your Node server

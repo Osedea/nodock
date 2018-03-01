@@ -28,6 +28,18 @@ services:
         expose:
             - "3306"
 
+    postgresql:
+        build:
+            context: ./postgresql
+            args:
+                - POSTGRES_USER=default_user
+                - POSTGRES_PASSWORD=secret
+                - POSTGRES_DB=default_db
+        volumes:
+            - ./data/postgresql/:/var/lib/postgresql
+        expose:
+            - "5432"
+
     mongo:
         build: ./mongo
         expose:
