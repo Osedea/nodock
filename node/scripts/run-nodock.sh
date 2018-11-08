@@ -16,4 +16,6 @@ else
     su -c "cd $PROJECT_PATH; npm i --force" -s /bin/bash www-app
 fi
 
+chown -R www-app:www-app /opt/app
+
 su -c "cd $PROJECT_PATH; $SCRIPT" -s /bin/bash www-app
